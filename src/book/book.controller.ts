@@ -1,34 +1,24 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { BookService } from './book.service';
 import { CreateBookDto } from './dto/create-book.dto';
-import { UpdateBookDto } from './dto/update-book.dto';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Book } from './entities/book.entity';
+
+const GET_BOOK = 'get_book';
 
 @Controller('book')
 export class BookController {
   constructor(private readonly bookService: BookService) {}
 
   @Post()
-  create(@Body() createBookDto: CreateBookDto) {
-    return this.bookService.create(createBookDto);
+  async createBook(@Body() dto: CreateBookDto) {
+    return this.bookService.createBook(dto);
   }
 
-  @Get()
-  findAll() {
-    return this.bookService.findAll();
-  }
+  @MessagePattern(GET_BOOK)
+  async handleGetBook(@Payload() data: { bookId: string }): Promise<Book> {
+    const { bookId } = data;
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.bookService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
-    return this.bookService.update(+id, updateBookDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.bookService.remove(+id);
+    return this.bookService.getBook(bookId);
   }
 }
