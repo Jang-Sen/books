@@ -10,7 +10,7 @@ import {
 @Entity()
 export class Book {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  public id: string;
 
   @CreateDateColumn()
   public createdAt: Date;
@@ -22,14 +22,14 @@ export class Book {
   public deletedAt: Date;
 
   @Column()
-  title: string;
+  public title: string;
 
   @Column()
-  author: string;
+  public author: string;
 
   @Column()
-  price: number;
+  public price: number;
 
   @Column()
-  stock: number;
+  public stock: number;
 }
