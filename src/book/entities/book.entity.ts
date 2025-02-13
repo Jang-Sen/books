@@ -1,26 +1,8 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity } from 'typeorm';
+import { Base } from '../../common/entities/base.entity';
 
 @Entity()
-export class Book {
-  @PrimaryGeneratedColumn('uuid')
-  public id: string;
-
-  @CreateDateColumn()
-  public createdAt: Date;
-
-  @UpdateDateColumn()
-  public updatedAt: Date;
-
-  @DeleteDateColumn()
-  public deletedAt: Date;
-
+export class Book extends Base {
   @Column()
   public title: string;
 
