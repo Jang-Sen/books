@@ -1,5 +1,6 @@
 import { IsNumber, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 
 export class CreateBookDto {
   @IsString()
@@ -17,6 +18,7 @@ export class CreateBookDto {
   author: string;
 
   @IsNumber()
+  @Type(() => Number)
   @ApiProperty({
     example: 20000,
     description: '책 가격',
@@ -24,6 +26,7 @@ export class CreateBookDto {
   price: number;
 
   @IsNumber()
+  @Type(() => Number)
   @ApiProperty({
     example: 10,
     description: '책 재고',
