@@ -18,6 +18,9 @@ export class BookController {
   @Post()
   @ApiOperation({ summary: '책 등록' })
   async createBook(@Body() dto: CreateBookDto): Promise<Book> {
+    console.log(typeof dto.price);
+    console.log(typeof dto.stock);
+
     return this.bookService.createBook(dto);
   }
 
