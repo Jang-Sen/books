@@ -22,6 +22,7 @@ export class CreateBookDto {
   @ApiProperty({
     example: 20000,
     description: '책 가격',
+    type: 'number',
   })
   price: number;
 
@@ -30,6 +31,7 @@ export class CreateBookDto {
   @ApiProperty({
     example: 10,
     description: '책 재고',
+    type: 'number',
   })
   stock: number;
 }

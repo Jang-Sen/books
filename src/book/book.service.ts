@@ -15,6 +15,8 @@ export class BookService {
   async createBook(dto: CreateBookDto) {
     const book = this.repository.create(dto);
 
+    console.log(typeof dto.price);
+
     return await this.repository.save(book);
   }
 
